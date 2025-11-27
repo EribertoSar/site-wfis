@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assembleia WFIS - Encontro de Líderes Escoteiros da América Latina</title>
+    <style>
+        :root {
+            --primary: #004B87;
+            --secondary: #009639;
+            --accent: #FF671F;
+            --light: #F5F5F5;
+            --dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .logo-placeholder p {
+            color: var(--primary);
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .logo-text {
+            text-align: center;
+        }
+        
+        .logo-text .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .logo-text .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Estilo específico para a logo no menu */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+        }
+        
+        .nav-logo img {
+            width: 40px; /* Tamanho bem pequeno para miniatura */
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background-color: #e55a1a;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 10px auto;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: justify;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2em;
+            line-height: 1.7;
+            text-indent: 1.5em;
+        }
+        
+        .about-image {
+            width: auto;
+            max-width: 50%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .about-image img {
+            width: 50%;
+            height: auto;
+            display: block;
+        }
+        
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+        
+        .program-content {
+            padding: 20px;
+        }
+        
+        .program-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .organizer {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        
+        .organizer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .organizer a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        /* Estilos para as redes sociais */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            transition: transform 0.3s, color 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+        
+        .social-icon i {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .social-icon span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .hero {
+                height: 50vh;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+            }
+            
+            .logo-placeholder {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .nav-logo {
+                padding: 10px;
+            }
+            
+            .nav-logo img {
+                width: 30px;
+            }
+            
+            .social-media {
+                gap: 15px;
+            }
+            
+            .social-icon i {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <!-- Adicionando Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li class="nav-logo">
+                <img src="images/logo-wfis.png" alt="Logo WFIS">
+            </li>
+            <li><a href="#sobre">Sobre o Evento</a></li>
+            <li><a href="#programacao">Programação</a></li>
+            <li><a href="#informacoes">Informações</a></li>
+            <li><a href="#organizacao">Organização</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Assembleia WFIS 2026 em Olinda</h1>
+            <p>Nos dias 16, 17 e 18 de outubro de 2026, Olinda será palco deste importante evento do movimento escoteiro na América Latina</p>
+            <a href="#programacao" class="btn">Conheça a Programação</a>
+            <a href="#informacoes" class="btn btn-secondary">Mais Informações</a>
+        </div>
+    </section>
+    
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre o Evento</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Nos dias 16, 17 e 18 de outubro de 2026, a cidade de Olinda, em Pernambuco, será palco de um dos mais importantes eventos do movimento escoteiro na América Latina. A Assembleia WFIS (World Federation of Independent Scouts) reunirá cerca de 100 líderes escoteiros de diversos países para três dias de atividades, palestras, intercâmbio de experiências e, claro, muita integração e fortalecimento dos laços de amizade entre as nações.</p>
+                    <p>Realizada pela Associação Escoteira Sempre Alerta Brasil (SAB), a assembleia acontecerá em locais emblemáticos de Olinda, uma cidade histórica com paisagens deslumbrantes e um ambiente que reforça a importância do escotismo e do aprendizado contínuo.</p>
+                    <p>A Assembleia WFIS tem como objetivo promover o fortalecimento do escotismo, a troca de experiências entre líderes de diferentes países e a construção de um futuro mais colaborativo e sustentável para o movimento escoteiro.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/wfis.jpg" alt="Atividades escoteiras">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="programacao" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Programação</h2>
+            <div class="program-grid">
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Atividades educacionais">
+                    </div>
+                    <div class="program-content">
+                        <h3>Atividades Culturais e Educacionais</h3>
+                        <p>Os participantes terão a oportunidade de conhecer a rica cultura de Pernambuco através de visitas a locais históricos e atividades que promovem o intercâmbio cultural entre os países participantes.</p>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="images/itamaraca.jpg" alt="Passeio à Ilha de Itamaracá">
+                    </div>
+                    <div class="program-content">
+                        <h3>Passeio à Ilha de Itamaracá</h3>
+                        <p>Os participantes poderão conhecer o Forte de Itamaracá, um importante marco histórico da região, além de explorar as belezas naturais da ilha. O passeio será seguido por um almoço em Itapissuma, uma cidade vizinha conhecida por sua gastronomia local.</p>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="images/recife-antigo.jpg" alt="Recife Antigo">
+                    </div>
+                    <div class="program-content">
+                        <h3>Visita ao Recife Antigo</h3>
+                        <p>A jornada cultural será encerrada no Recife Antigo, onde os líderes terão a oportunidade de conhecer alguns dos principais pontos turísticos da capital pernambucana, como o Marco Zero, a Rua do Bom Jesus e o famoso Museu do Frevo.</p>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Reuniões e palestras">
+                    </div>
+                    <div class="program-content">
+                        <h3>Reuniões e Palestras</h3>
+                        <p>Durante os três dias de evento, serão realizadas reuniões com especialistas em educação, gestão de grupos e liderança, sempre com foco na formação contínua dos líderes escoteiros.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="informacoes">
+        <div class="container">
+            <h2 class="section-title">Informações</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i>📅</i>
+                    <h3>Data</h3>
+                    <p>16 a 18 de outubro de 2026</p>
+                </div>
+                
+                <div class="info-card">
+                    <i>📍</i>
+                    <h3>Local</h3>
+                    <p>Olinda, Pernambuco, Brasil</p>
+                </div>
+                
+                <div class="info-card">
+                    <i>🏢</i>
+                    <h3>Organização</h3>
+                    <p>Associação Escoteira Sempre Alerta Brasil (SAB)</p>
+                </div>
+                
+                <div class="info-card">
+                    <i>🏨</i>
+                    <h3>Hospedagem</h3>
+                    <p>Pousada São Francisco e Núcleo de Apoio a Eventos da UFPE</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="organizacao" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Organização</h2>
+            <div class="organizer">
+                <h3>Associação Escoteira Sempre Alerta Brasil (SAB)</h3>
+                <p>Esta assembleia está sendo organizada pela Associação Escoteira Sempre Alerta Brasil, uma instituição dedicada ao desenvolvimento do movimento escoteiro no país.</p>
+                <p>Para mais informações sobre a SAB, visite: <a href="https://semprealertabrasil.com.br/" target="_blank">semprealertabrasil.com.br</a></p>
+                <a href="https://semprealertabrasil.com.br/" target="_blank" class="btn">Visitar Site da SAB</a>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <h3 style="margin-bottom: 20px;">Questionários e Inscrições</h3>
+                <p>Para participar do evento ou obter mais informações, acesse nossos formulários:</p>
+                <a href="#" class="btn">Formulário de Inscrição</a>
+                <a href="#" class="btn">Questionário de Interesses</a>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">(Links para formulários do Google Drive serão adicionados posteriormente)</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contato">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h3>Contato para Imprensa</h3>
+                <p>Assembleia WFIS</p>
+                <p>Email: sergio.santossilva@ufpe.br</p>
+                <p>Telefone: (81) 98804-9745</p>
+                
+                <!-- Redes Sociais -->
+                <div class="social-media">
+                    <a href="https://wa.me/5581988049745?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Assembléia%20do%20WFIS" class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.instagram.com/sergiosantos_pe/?igsh=ODczcm04bmphazh4#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/sergio.santos.907417" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://youtube.com/@ufpeoficial?si=B4AGdkZPiIxbdS-l" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Assembleia WFIS 2026</h3>
+                    <p>Encontro de Líderes Escoteiros da América Latina em Olinda, Pernambuco, Brasil.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#sobre">Sobre o Evento</a></li>
+                        <li><a href="#programacao">Programação</a></li>
+                        <li><a href="#informacoes">Informações</a></li>
+                        <li><a href="#organizacao">Organização</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>Assembleia WFIS</li>
+                        <li>Email: sergio.santossilva@ufpe.br</li>
+                        <li>Site: <a href="https://semprealertabrasil.com.br/" target="_blank">semprealertabrasil.com.br</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Assembleia WFIS - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
