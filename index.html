@@ -104,6 +104,7 @@
             text-decoration: none;
             padding: 15px 20px;
             transition: background-color 0.3s;
+            white-space: nowrap; /* Evita quebra de texto nos links */
         }
         
         nav a:hover {
@@ -119,9 +120,20 @@
         }
         
         .nav-logo img {
-            width: 40px; /* Tamanho bem pequeno para miniatura */
+            width: 40px;
             height: auto;
             border-radius: 5px;
+        }
+        
+        /* Menu hamburger para mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
         }
         
         .hero {
@@ -418,38 +430,97 @@
             opacity: 0.7;
         }
         
-        @media (max-width: 768px) {
+        /* ========== RESPONSIVIDADE ========== */
+        
+        /* Tablets (768px a 1024px) */
+        @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
-            nav ul {
-                flex-direction: column;
+            .about-content {
+                gap: 20px;
+            }
+            
+            .program-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        /* Celulares grandes (576px a 768px) */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
             
             .hero {
                 height: 50vh;
+                padding: 0 15px;
             }
             
-            .logo-container {
-                flex-direction: column;
+            /* Menu para tablets e celulares grandes */
+            nav ul {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 10px 15px;
+                -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
             }
             
-            .logo-placeholder {
-                width: 120px;
-                height: 120px;
+            nav li {
+                flex-shrink: 0; /* Impede que os itens do menu encolham */
+            }
+            
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-logo {
+                padding: 5px;
+            }
+            
+            .nav-logo img {
+                width: 35px;
             }
             
             .about-content {
                 flex-direction: column;
             }
             
-            .nav-logo {
-                padding: 10px;
+            .about-image {
+                max-width: 100%;
+                margin-top: 20px;
             }
             
-            .nav-logo img {
-                width: 30px;
+            .about-image img {
+                width: 80%;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .program-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+            
+            .organizer {
+                padding: 20px;
             }
             
             .social-media {
@@ -458,6 +529,135 @@
             
             .social-icon i {
                 font-size: 2rem;
+            }
+        }
+        
+        /* Celulares pequenos (até 576px) */
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero {
+                height: 45vh;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 5px;
+            }
+            
+            /* Menu para celulares pequenos - ainda horizontal com scroll */
+            nav ul {
+                padding: 8px 10px;
+            }
+            
+            nav a {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .nav-logo img {
+                width: 30px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 30px;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .about-text {
+                text-align: left; /* Em telas muito pequenas, justificado pode ficar estranho */
+            }
+            
+            .about-text p {
+                text-indent: 1em;
+                line-height: 1.6;
+            }
+            
+            .about-image img {
+                width: 100%;
+            }
+            
+            .program-grid {
+                grid-template-columns: 1fr; /* Uma coluna em celulares pequenos */
+                gap: 15px;
+            }
+            
+            .program-card {
+                margin-bottom: 15px;
+            }
+            
+            .program-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .social-media {
+                gap: 10px;
+            }
+            
+            .social-icon i {
+                font-size: 1.8rem;
+            }
+            
+            .social-icon span {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Celulares muito pequenos (até 375px) */
+        @media (max-width: 375px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .nav-logo img {
+                width: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            
+            .social-icon i {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -469,7 +669,7 @@
     <nav>
         <ul>
             <li class="nav-logo">
-                <img src="images/wfis.jpg" alt="Logo WFIS">
+                <img src="images/wfis.png" alt="Logo WFIS">
             </li>
             <li><a href="#sobre">Sobre o Evento</a></li>
             <li><a href="#programacao">Programação</a></li>
@@ -498,7 +698,8 @@
                     <p>A Assembleia WFIS tem como objetivo promover o fortalecimento do escotismo, a troca de experiências entre líderes de diferentes países e a construção de um futuro mais colaborativo e sustentável para o movimento escoteiro.</p>
                 </div>
                 <div class="about-image">
-                    <img src="images\logo-wfis.png" alt="Atividades escoteiras">
+                    <img src="images/logo-wfis.png
+                    " alt="Atividades escoteiras">
                 </div>
             </div>
         </div>
@@ -606,7 +807,7 @@
         <div class="container">
             <h2 class="section-title">Contato</h2>
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <h3>Contato para Imprensa</h3>
+                <h3>Entre em Contato</h3>
                 <p>Assembleia WFIS</p>
                 <p>Email: sergio.santossilva@ufpe.br</p>
                 <p>Telefone: (81) 98804-9745</p>
@@ -625,7 +826,7 @@
                         <i class="fab fa-facebook"></i>
                         <span>Facebook</span>
                     </a>
-                    <a href="https://youtube.com/@ufpeoficial?si=B4AGdkZPiIxbdS-l" class="social-icon">
+                    <a href="https://www.youtube.com/@SEMPREALERTABRASILOFICIAL" class="social-icon">
                         <i class="fab fa-youtube"></i>
                         <span>YouTube</span>
                     </a>
@@ -668,5 +869,4 @@
         </div>
     </footer>
 </body>
-
 </html>
