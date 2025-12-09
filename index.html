@@ -104,14 +104,13 @@
             text-decoration: none;
             padding: 15px 20px;
             transition: background-color 0.3s;
-            white-space: nowrap; /* Evita quebra de texto nos links */
+            white-space: nowrap;
         }
         
         nav a:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Estilo específico para a logo no menu */
         .nav-logo {
             display: flex;
             align-items: center;
@@ -125,44 +124,140 @@
             border-radius: 5px;
         }
         
-        /* Menu hamburger para mobile */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 10px;
+        /* ========== CARROSSEL ========== */
+        .carousel-container {
+            width: 100%;
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
         }
         
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
+        .carousel-slide {
+            display: flex;
+            width: 600%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+        
+        .carousel-slide img {
+            width: 16.666%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.7) 100%
+            );
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            margin-bottom: 40px;
         }
         
-        .hero-content {
+        .carousel-content {
             max-width: 800px;
-            padding: 20px;
+            padding: 30px;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            backdrop-filter: blur(3px);
         }
         
-        .hero h1 {
+        .carousel-content h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 
+                2px 2px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                0 0 15px rgba(0, 0, 0, 0.8);
+            color: white;
+            font-weight: bold;
         }
         
-        .hero p {
+        .carousel-content p {
             font-size: 1.2rem;
             margin-bottom: 20px;
+            text-shadow: 
+                1px 1px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                0 0 10px rgba(0, 0, 0, 0.8);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .indicator.active {
+            background-color: var(--accent);
+            transform: scale(1.2);
+        }
+        
+        .indicator:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-nav:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .carousel-nav.prev {
+            left: 20px;
+        }
+        
+        .carousel-nav.next {
+            right: 20px;
         }
         
         .btn {
@@ -188,6 +283,70 @@
         
         .btn-secondary:hover {
             background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .carousel-content .btn {
+            text-shadow: 1px 1px 0 #000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .carousel-content .btn-secondary {
+            text-shadow: 1px 1px 0 #000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Ajuste para responsividade do carrossel */
+        @media (max-width: 768px) {
+            .carousel-container {
+                height: 50vh;
+            }
+            
+            .carousel-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .carousel-content p {
+                font-size: 1rem;
+            }
+            
+            .carousel-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .carousel-container {
+                height: 45vh;
+            }
+            
+            .carousel-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .carousel-nav {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .carousel-container {
+                height: 40vh;
+            }
+            
+            .carousel-content h1 {
+                font-size: 1.4rem;
+            }
+            
+            .carousel-content p {
+                font-size: 0.9rem;
+            }
+            
+            .carousel-content {
+                padding: 15px;
+            }
         }
         
         section {
@@ -229,6 +388,60 @@
             text-indent: 1.5em;
         }
         
+        /* Estilos para a seção de vídeo */
+        .video-container {
+            width: 100%;
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .video-container h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-wrapper iframe,
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
         .about-image {
             width: auto;
             max-width: 50%;
@@ -242,7 +455,7 @@
         }
 
         .about-image img {
-            width: 100%;
+            width: 50%;
             height: auto;
             display: block;
         }
@@ -336,7 +549,6 @@
             text-decoration: underline;
         }
         
-        /* Estilos para as redes sociais */
         .social-media {
             display: flex;
             justify-content: center;
@@ -430,14 +642,9 @@
             opacity: 0.7;
         }
         
-        /* ========== RESPONSIVIDADE ========== */
+        /* ========== RESPONSIVIDADE GERAL ========== */
         
-        /* Tablets (768px a 1024px) */
         @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
             .about-content {
                 gap: 20px;
             }
@@ -448,32 +655,17 @@
             }
         }
         
-        /* Celulares grandes (576px a 768px) */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .hero {
-                height: 50vh;
-                padding: 0 15px;
-            }
-            
-            /* Menu para tablets e celulares grandes */
             nav ul {
                 flex-wrap: nowrap;
                 overflow-x: auto;
                 justify-content: flex-start;
                 padding: 10px 15px;
-                -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+                -webkit-overflow-scrolling: touch;
             }
             
             nav li {
-                flex-shrink: 0; /* Impede que os itens do menu encolham */
+                flex-shrink: 0;
             }
             
             nav a {
@@ -506,6 +698,10 @@
                 font-size: 1.8rem;
             }
             
+            .video-container h3 {
+                font-size: 1.3rem;
+            }
+            
             .program-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
@@ -532,19 +728,10 @@
             }
         }
         
-        /* Celulares pequenos (até 576px) */
         @media (max-width: 576px) {
             .container {
                 width: 95%;
                 padding: 15px 0;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero {
-                height: 45vh;
             }
             
             .btn {
@@ -553,7 +740,6 @@
                 margin: 5px;
             }
             
-            /* Menu para celulares pequenos - ainda horizontal com scroll */
             nav ul {
                 padding: 8px 10px;
             }
@@ -577,7 +763,7 @@
             }
             
             .about-text {
-                text-align: left; /* Em telas muito pequenas, justificado pode ficar estranho */
+                text-align: left;
             }
             
             .about-text p {
@@ -585,12 +771,25 @@
                 line-height: 1.6;
             }
             
+            .video-container {
+                margin: 30px 0 15px;
+            }
+            
+            .video-container h3 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            
+            .video-placeholder i {
+                font-size: 2rem;
+            }
+            
             .about-image img {
                 width: 100%;
             }
             
             .program-grid {
-                grid-template-columns: 1fr; /* Uma coluna em celulares pequenos */
+                grid-template-columns: 1fr;
                 gap: 15px;
             }
             
@@ -628,16 +827,7 @@
             }
         }
         
-        /* Celulares muito pequenos (até 375px) */
         @media (max-width: 375px) {
-            .hero h1 {
-                font-size: 1.4rem;
-            }
-            
-            .hero p {
-                font-size: 0.9rem;
-            }
-            
             nav a {
                 padding: 6px 10px;
                 font-size: 0.8rem;
@@ -659,9 +849,12 @@
             .social-icon i {
                 font-size: 1.5rem;
             }
+            
+            .video-container h3 {
+                font-size: 1.1rem;
+            }
         }
     </style>
-    <!-- Adicionando Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -679,14 +872,39 @@
         </ul>
     </nav>
     
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Assembleia WFIS 2026 em Olinda</h1>
-            <p>Nos dias 16, 17 e 18 de outubro de 2026, Olinda será palco deste importante evento do movimento escoteiro na América Latina</p>
-            <a href="#programacao" class="btn">Conheça a Programação</a>
-            <a href="#informacoes" class="btn btn-secondary">Mais Informações</a>
+    <!-- CARROSSEL -->
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="images/wfis1.jpg" alt="Atividade escoteira 1">
+            <img src="images/wfis2.jpg" alt="Atividade escoteira 2">
+            <img src="images/wfis3.jpg" alt="Atividade escoteira 3">
+            <img src="images/wfis4.jpg" alt="Atividade escoteira 4">
+            <img src="images/wfis5.jpg" alt="Atividade escoteira 5">
+            <img src="images/wfis6.jpg" alt="Atividade escoteira 6">
         </div>
-    </section>
+        
+        <!-- Botões de navegação -->
+        <button class="carousel-nav prev">‹</button>
+        <button class="carousel-nav next">›</button>
+        
+        <div class="carousel-overlay">
+            <div class="carousel-content">
+                <h1>Assembleia WFIS 2026 em Olinda</h1>
+                <p>Nos dias 16, 17 e 18 de outubro de 2026, Olinda será palco deste importante evento do movimento escoteiro na América Latina</p>
+                <a href="#programacao" class="btn">Conheça a Programação</a>
+                <a href="#informacoes" class="btn btn-secondary">Mais Informações</a>
+            </div>
+        </div>
+        
+        <div class="carousel-indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
+            <div class="indicator" data-slide="4"></div>
+            <div class="indicator" data-slide="5"></div>
+        </div>
+    </div>
     
     <section id="sobre">
         <div class="container">
@@ -696,14 +914,25 @@
                     <p>Nos dias 16, 17 e 18 de outubro de 2026, a cidade de Olinda, em Pernambuco, será palco de um dos mais importantes eventos do movimento escoteiro na América Latina. A Assembleia WFIS (World Federation of Independent Scouts) reunirá cerca de 100 líderes escoteiros de diversos países para três dias de atividades, palestras, intercâmbio de experiências e, claro, muita integração e fortalecimento dos laços de amizade entre as nações.</p>
                     <p>Realizada pela Associação Escoteira Sempre Alerta Brasil (SAB), a assembleia acontecerá em locais emblemáticos de Olinda, uma cidade histórica com paisagens deslumbrantes e um ambiente que reforça a importância do escotismo e do aprendizado contínuo.</p>
                     <p>A Assembleia WFIS tem como objetivo promover o fortalecimento do escotismo, a troca de experiências entre líderes de diferentes países e a construção de um futuro mais colaborativo e sustentável para o movimento escoteiro.</p>
+                    
+                    <!-- Seção do Vídeo -->
+                    <div class="video-container">
+                        <h2>Conheça mais sobre a Assembleia WFIS 2026</h2>
+                        <div class="video-wrapper">
+                            <!-- Substitua o placeholder pelo seu vídeo -->
+                            <video controls poster="images/thumbnail-video.jpg">
+                                <source src="videos/assembleia-wfis.mp4" type="video/mp4">
+                                Seu navegador não suporta a tag de vídeo.
+                            </video>
+                        </div>
+                    </div>
                 </div>
                 <div class="about-image">
-                    <img src="images/logo-wfis.png
-                    " alt="Atividades escoteiras">
+                    <img src="images/logo-wfis.png" alt="Atividades escoteiras">
                 </div>
             </div>
         </div>
-    </section>
+    </section>  
     
     <section id="programacao" style="background-color: #f9f9f9;">
         <div class="container">
@@ -809,7 +1038,7 @@
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                 <h3>Entre em Contato</h3>
                 <p>Assembleia WFIS</p>
-                <p>Email: xxxx@xxxx.com</p>
+                <p>Email: xxxxx@xxxx.com</p>
                 <p>Telefone: (xx) xxxxx-xxxx</p>
                 
                 <!-- Redes Sociais -->
@@ -868,6 +1097,185 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos do carrossel
+            const carouselSlide = document.querySelector('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevButton = document.querySelector('.carousel-nav.prev');
+            const nextButton = document.querySelector('.carousel-nav.next');
+            const carouselContainer = document.querySelector('.carousel-container');
+            
+            const totalSlides = 6;
+            let currentSlide = 0;
+            let autoSlideInterval;
+            let isUserInteracting = false;
+            let autoSlideDelay = 5000; // 5 segundos
+            
+            // Inicializa o carrossel
+            function initCarousel() {
+                goToSlide(0); // Começa no primeiro slide
+                startAutoSlide(); // Inicia a transição automática
+                updateIndicators(); // Atualiza os indicadores
+            }
+            
+            // Vai para um slide específico
+            function goToSlide(slideIndex) {
+                // Garante que o índice esteja dentro dos limites
+                currentSlide = (slideIndex + totalSlides) % totalSlides;
+                
+                // Calcula a posição de translação
+                const translateX = -(currentSlide * (100 / totalSlides));
+                carouselSlide.style.transform = `translateX(${translateX}%)`;
+                
+                // Atualiza os indicadores
+                updateIndicators();
+            }
+            
+            // Atualiza os indicadores visuais
+            function updateIndicators() {
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                        indicator.style.backgroundColor = 'var(--accent)';
+                    } else {
+                        indicator.classList.remove('active');
+                        indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                    }
+                });
+            }
+            
+            // Próximo slide
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+                resetAutoSlide(); // Reinicia o temporizador automático
+            }
+            
+            // Slide anterior
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+                resetAutoSlide(); // Reinicia o temporizador automático
+            }
+            
+            // Inicia a transição automática
+            function startAutoSlide() {
+                if (autoSlideInterval) clearInterval(autoSlideInterval);
+                
+                autoSlideInterval = setInterval(() => {
+                    if (!isUserInteracting) {
+                        nextSlide();
+                    }
+                }, autoSlideDelay);
+            }
+            
+            // Reinicia a transição automática
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
+            
+            // Pausa a transição automática temporariamente
+            function pauseAutoSlide() {
+                isUserInteracting = true;
+                clearInterval(autoSlideInterval);
+                
+                // Retoma automaticamente após 10 segundos de inatividade
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    startAutoSlide();
+                }, 10000);
+            }
+            
+            // Eventos para os indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    goToSlide(index);
+                    pauseAutoSlide(); // Pausa a transição automática quando o usuário interage
+                });
+            });
+            
+            // Eventos para os botões de navegação
+            if (prevButton) {
+                prevButton.addEventListener('click', function() {
+                    prevSlide();
+                    pauseAutoSlide();
+                });
+            }
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', function() {
+                    nextSlide();
+                    pauseAutoSlide();
+                });
+            }
+            
+            // Eventos para pausar/retomar com mouse
+            carouselContainer.addEventListener('mouseenter', function() {
+                isUserInteracting = true;
+                clearInterval(autoSlideInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', function() {
+                isUserInteracting = false;
+                startAutoSlide();
+            });
+            
+            // Eventos para toque em dispositivos móveis
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            carouselContainer.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                isUserInteracting = true;
+                clearInterval(autoSlideInterval);
+            });
+            
+            carouselContainer.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                
+                // Retoma após 10 segundos se não houver mais interação
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    startAutoSlide();
+                }, 10000);
+            });
+            
+            // Detecta gesto de swipe
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                
+                if (touchStartX - touchEndX > swipeThreshold) {
+                    // Swipe para esquerda = próximo slide
+                    nextSlide();
+                } else if (touchEndX - touchStartX > swipeThreshold) {
+                    // Swipe para direita = slide anterior
+                    prevSlide();
+                }
+            }
+            
+            // Navegação por teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    nextSlide();
+                    pauseAutoSlide();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    prevSlide();
+                    pauseAutoSlide();
+                }
+            });
+            
+            // Inicializa o carrossel
+            initCarousel();
+            
+            // Limpa o intervalo quando a página é fechada/recarregada
+            window.addEventListener('beforeunload', function() {
+                clearInterval(autoSlideInterval);
+            });
+        });
+    </script>
 </body>
 </html>
-
